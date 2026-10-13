@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0b0e">
+<meta name="description" content="Distributed Task Scheduler — explore the project, workflow, source code, and published release downloads.">
+<title>Distributed Task Scheduler</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0b0e;--panel:#111116;--text:#f4f2f2;--muted:#a09da7;--red:#ff454f;--red2:#ff6a72;--line:#292831;--green:#7ce0ad;--mono:"DM Mono",monospace;--sans:"Space Grotesk",system-ui,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:85px}body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.15;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,black,transparent 80%)}
+a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}.nav{height:76px;display:flex;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:0;background:rgba(11,11,14,.84);backdrop-filter:blur(16px);z-index:10}.nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%}
+.brand{display:flex;gap:11px;align-items:center;font-weight:700;letter-spacing:-.04em}.brand-icon{width:34px;height:34px;border-radius:10px;background:var(--red);display:grid;place-items:center;color:#12090a;font-family:var(--mono);font-weight:bold;box-shadow:0 0 24px #ff454f35}.brand em{font-style:normal;color:var(--red)}
+.navlinks{display:flex;align-items:center;gap:25px;color:var(--muted);font-size:13px}.navlinks a:hover{color:white}.navcta{padding:10px 15px;border:1px solid #45414b;border-radius:8px;color:white!important}
+.hero{padding:94px 0 75px}.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:9px;border:1px solid #3b292d;background:#1b1115;color:#ff9ba0;padding:8px 11px;border-radius:99px;font:11px var(--mono);letter-spacing:.08em;text-transform:uppercase}.pulse{width:7px;height:7px;background:var(--red);border-radius:50%;box-shadow:0 0 12px var(--red);animation:pulse 1.8s infinite}
+@keyframes pulse{50%{opacity:.35;box-shadow:0 0 2px var(--red)}}h1{font-size:clamp(43px,6vw,72px);line-height:1;letter-spacing:-.075em;margin:25px 0 22px;font-weight:700}h1 .accent{color:var(--red)}.hero p{font-size:16px;line-height:1.75;color:var(--muted);max-width:510px;margin:0}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 18px;border-radius:9px;font-weight:600;font-size:13px;transition:transform .2s,background .2s,border-color .2s}.btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--red);color:#18090a;box-shadow:0 8px 28px #ff454f24}.btn-primary:hover{background:var(--red2)}.btn-secondary{border:1px solid #3b3943;background:#15151b}.btn-secondary:hover{border-color:#77717e}.micro{font:11px var(--mono);color:#77737f;margin-top:18px}
+.panel{background:#101014;border:1px solid #39353e;border-radius:13px;overflow:hidden;box-shadow:0 28px 80px #0009;animation:float 6s ease-in-out infinite}.termbar{height:43px;background:#19181e;border-bottom:1px solid #302d36;display:flex;align-items:center;padding:0 14px;gap:7px}.dot{width:8px;height:8px;border-radius:50%;background:#59545e}.dot:first-child{background:#ff625c}.dot:nth-child(2){background:#ffbd44}.dot:nth-child(3){background:#39c978}.termname{font:10px var(--mono);color:#8d8792;margin:auto}.termbody{padding:23px 20px;font:11px/1.9 var(--mono);color:#b9b4c0;min-height:315px}.term-muted{color:#77727e}.term-title{color:#fff;font-weight:bold;font-size:12px}.term-red{color:#ff7b83}.term-green{color:var(--green)}.tag{display:inline-block;background:#302026;color:#ff9ba0;padding:1px 6px;border-radius:3px}.dividerline{border-top:1px solid #302d36;margin:13px 0}.rowline{display:flex;gap:10px;align-items:flex-start}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:22px}.stat{padding:20px 12px;text-align:center}.stat strong{display:block;font-size:15px;letter-spacing:-.03em}.stat span{display:block;color:var(--muted);font:10px var(--mono);margin-top:6px;text-transform:uppercase;letter-spacing:.06em}
+section{padding:78px 0}.section-head{max-width:650px;margin-bottom:32px}.kicker{font:11px var(--mono);color:var(--red);text-transform:uppercase;letter-spacing:.16em}.section-head h2{font-size:clamp(30px,4vw,44px);letter-spacing:-.06em;line-height:1.08;margin:13px 0}.section-head p{color:var(--muted);line-height:1.7;margin:0}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.feature{border:1px solid var(--line);background:linear-gradient(145deg,#15151b,#0f0f13);border-radius:12px;padding:23px;min-height:170px;transition:border-color .25s,transform .25s}.feature:hover{border-color:#684047;transform:translateY(-4px)}.feature-icon{width:37px;height:37px;border-radius:9px;display:grid;place-items:center;background:#29171c;color:var(--red);font-size:18px;margin-bottom:18px}.feature h3{font-size:16px;margin:0 0 9px;letter-spacing:-.03em}.feature p{font-size:13px;line-height:1.7;color:var(--muted);margin:0}
+.workflow{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}.steps{display:grid}.step{display:grid;grid-template-columns:38px 1fr;gap:15px;padding:18px 0;border-bottom:1px solid var(--line)}.stepnum{width:31px;height:31px;display:grid;place-items:center;border:1px solid #4a3036;border-radius:8px;color:var(--red);font:12px var(--mono)}.step h3{font-size:15px;margin:1px 0 7px}.step p{font-size:13px;color:var(--muted);line-height:1.65;margin:0}
+.release-list{display:grid;gap:14px}.release-group{border:1px solid var(--line);background:linear-gradient(145deg,#15151b,#0f0f13);border-radius:12px;overflow:hidden}.release-group-head{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:17px 19px;background:#17171d;border-bottom:1px solid var(--line)}.release-group-head h3{font-size:16px;margin:0 0 4px}.release-group-head p{font:10px var(--mono);color:var(--muted);margin:0}.latest-pill{font:10px var(--mono);color:#ff9ba0;border:1px solid #593039;background:#29171c;border-radius:99px;padding:6px 9px;white-space:nowrap}.asset-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:14px}.asset-item{display:flex;align-items:center;gap:12px;justify-content:space-between;padding:13px;border:1px solid #302d36;background:#111116;border-radius:9px;min-width:0}.asset-name{min-width:0}.asset-name strong{display:block;font-size:12px;overflow-wrap:anywhere}.asset-name span{display:block;color:var(--muted);font:10px var(--mono);margin-top:5px}.asset-download{flex-shrink:0;background:var(--red);color:#18090a;border-radius:7px;padding:9px 11px;font-size:11px;font-weight:700;white-space:nowrap}.asset-download:hover{background:var(--red2)}.release-empty{padding:16px;color:var(--muted);font-size:12px;line-height:1.7}.release-meta{font:11px var(--mono);color:var(--muted);line-height:1.8}.release-meta strong{color:#f4f2f2;font-weight:500}.download-toolbar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px;padding:15px 17px;border:1px solid var(--line);background:#111116;border-radius:10px}.download-note{margin-top:15px;border:1px solid #393038;border-radius:9px;padding:13px 15px;color:var(--muted);font-size:12px;line-height:1.65}.download-note strong{color:#ff9ba0}
+.codebox{background:#101014;border:1px solid var(--line);border-radius:12px;overflow:hidden}.codehead{padding:14px 17px;display:flex;justify-content:space-between;align-items:center;background:#17171d;border-bottom:1px solid var(--line);font:11px var(--mono);color:#aaa4b0}.copy{background:#27242d;border:1px solid #3b3741;color:#eee;border-radius:6px;padding:7px 10px;font:10px var(--mono);cursor:pointer}.copy:hover{border-color:var(--red)}pre{margin:0;padding:20px;white-space:pre-wrap;overflow-wrap:anywhere;font:12px/2 var(--mono);color:#d6d0dc}.code-comment{color:#7d7784}.code-command{color:#ff8a91}
+.cta-panel{border:1px solid #503139;border-radius:16px;padding:clamp(25px,5vw,45px);background:radial-gradient(ellipse at 100% 0%,#7c202b33,transparent 45%),linear-gradient(135deg,#191116,#111116 65%);display:flex;align-items:center;justify-content:space-between;gap:30px}.cta-panel h2{font-size:clamp(27px,4vw,40px);letter-spacing:-.06em;margin:10px 0}.cta-panel p{color:var(--muted);line-height:1.7;margin:0;max-width:540px;font-size:14px}footer{border-top:1px solid var(--line);padding:24px 0 34px;color:#77727e;font-size:11px}.footer-inner{display:flex;justify-content:space-between;gap:18px;align-items:center}.footer-links{display:flex;gap:20px}.footer-links a:hover{color:white}.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}.reveal.visible{opacity:1;transform:none}
+@media(max-width:850px){.hero-grid,.workflow{grid-template-columns:1fr;gap:38px}.hero{padding-top:65px}.features{grid-template-columns:repeat(2,1fr)}.cta-panel{align-items:flex-start;flex-direction:column}}
+@media(max-width:560px){.wrap{width:calc(100% - 28px)}.nav{height:65px}.navlinks{gap:10px;font-size:12px}.navlinks a:not(.navcta){display:none}.navcta{padding:9px 10px}.hero{padding:55px 0 48px}h1{font-size:48px}.hero p{font-size:15px}.termbody{padding:17px 12px;font-size:9px;min-height:280px}.features{grid-template-columns:1fr}.feature{min-height:0}section{padding:60px 0}.stats{margin-top:12px}.stat{padding:16px 5px}.stat strong{font-size:13px}.stat span{font-size:9px}.footer-inner{align-items:flex-start;flex-direction:column}.footer-links{flex-wrap:wrap}.actions .btn{flex:1}.asset-list{grid-template-columns:1fr}.release-group-head{padding:14px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap nav-inner">
+<a class="brand" href="#top"><span class="brand-icon">DTS</span><span>DISTRIBUTED<em>-SCHEDULER</em></span></a>
+<nav class="navlinks" aria-label="Main navigation"><a href="#features">Features</a><a href="#workflow">Workflow</a><a href="#downloads">Downloads</a><a class="navcta" href="https://github.com/sairajKhilariArch/Distributed_task_scheduler" target="_blank" rel="noreferrer">View on GitHub ↗</a></nav>
+</div></header>
+<main id="top">
+<div class="wrap hero">
+<div class="hero-grid">
+<div class="reveal">
+<div class="eyebrow"><span class="pulse"></span> DISTRIBUTED SYSTEMS · TASK SCHEDULING</div>
+<h1>Schedule work.<br>Coordinate tasks.<br><span class="accent">Scale smarter.</span></h1>
+<p>A project focused on distributed task scheduling: organizing work, coordinating execution, and exploring how tasks can be managed across a system. Explore the source code and the project's current implementation.</p>
+<div class="actions"><a class="btn btn-primary" href="#downloads">↓ Download releases</a><a class="btn btn-secondary" href="https://github.com/sairajKhilariArch/Distributed_task_scheduler" target="_blank" rel="noreferrer">⌘ Explore source code</a></div>
+<div class="micro">DISTRIBUTED SYSTEMS&nbsp; / &nbsp;TASK EXECUTION&nbsp; / &nbsp;SCHEDULING</div>
+</div>
+<div class="panel reveal" aria-label="Illustrative distributed task scheduler terminal preview">
+<div class="termbar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span class="termname">scheduler — task monitor</span></div>
+<div class="termbody">
+<div class="term-muted">┌───────────────────────────────────────┐</div>
+<div class="term-title">│ &nbsp; DISTRIBUTED TASK SCHEDULER &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │</div>
+<div class="term-muted">└───────────────────────────────────────┘</div><br>
+<div class="rowline"><span class="term-red">›</span><span>Scheduler status: <span class="term-green">ACTIVE</span></span></div>
+<div class="rowline"><span class="term-muted">01</span><span>task.compile <span class="tag">RUNNING</span></span></div>
+<div class="rowline"><span class="term-muted">02</span><span>task.process <span class="tag">QUEUED</span></span></div>
+<div class="rowline"><span class="term-muted">03</span><span>task.report <span class="term-green">COMPLETED</span></span></div>
+<div class="dividerline"></div>
+<div class="term-muted">WORKER OVERVIEW</div>
+<div class="rowline"><span class="term-green">●</span><span>worker-01 &nbsp; available</span></div>
+<div class="rowline"><span class="term-green">●</span><span>worker-02 &nbsp; available</span></div>
+<div class="dividerline"></div>
+<div class="term-muted">Illustrative UI preview — not live application output.</div>
+</div></div>
+</div>
+<div class="stats reveal"><div class="stat"><strong>Task Scheduling</strong><span>Project focus</span></div><div class="stat"><strong>Distributed Work</strong><span>System concept</span></div><div class="stat"><strong>Source Available</strong><span>Explore on GitHub</span></div></div>
+</div>
+<section id="features"><div class="wrap">
+<div class="section-head reveal"><div class="kicker">01 / Features</div><h2>Make task execution easier to reason about.</h2><p>A clean project page for understanding the scheduler, exploring the implementation, and finding any published builds.</p></div>
+<div class="features">
+<article class="feature reveal"><div class="feature-icon">↗</div><h3>Task scheduling</h3><p>Organize work into tasks and explore how execution can be coordinated.</p></article>
+<article class="feature reveal"><div class="feature-icon">⌘</div><h3>Distributed execution</h3><p>Explore the project's approach to managing work across distributed components.</p></article>
+<article class="feature reveal"><div class="feature-icon">◷</div><h3>Task lifecycle</h3><p>Think through task states such as queued, running, completed, and failed as supported by the implementation.</p></article>
+<article class="feature reveal"><div class="feature-icon">▤</div><h3>Code-first project</h3><p>Inspect the repository source, dependencies, and documentation for exact capabilities.</p></article>
+<article class="feature reveal"><div class="feature-icon">⇩</div><h3>Direct release downloads</h3><p>Download buttons link directly to actual assets attached to published GitHub releases.</p></article>
+<article class="feature reveal"><div class="feature-icon">⚙</div><h3>Extend and experiment</h3><p>Use the code as a base for learning about task queues, workers, and distributed execution.</p></article>
+</div></div></section>
+<section id="workflow"><div class="wrap workflow">
+<div class="section-head reveal"><div class="kicker">02 / Workflow</div><h2>Start with the source.<br>Understand the system.</h2><p>Use the repository's own README for the exact runtime, dependencies, configuration, and startup commands.</p></div>
+<div class="steps">
+<div class="step reveal"><div class="stepnum">01</div><div><h3>Clone the repository</h3><p>Download the project source from GitHub.</p></div></div>
+<div class="step reveal"><div class="stepnum">02</div><div><h3>Read the setup guide</h3><p>Inspect the README, project manifest, and configuration examples before running it.</p></div></div>
+<div class="step reveal"><div class="stepnum">03</div><div><h3>Configure the services</h3><p>Set up any dependencies or worker components required by the current implementation.</p></div></div>
+<div class="step reveal"><div class="stepnum">04</div><div><h3>Run and test tasks</h3><p>Follow the repository's documented commands and verify task execution in your environment.</p></div></div>
+</div></div></section>
+<section id="downloads"><div class="wrap">
+<div class="section-head reveal"><div class="kicker">03 / Downloads</div><h2>Choose a release version.</h2><p>Select a published release asset to download the file directly. Versions and assets are loaded from this repository's GitHub releases.</p></div>
+<div class="download-toolbar reveal"><div class="release-meta"><strong id="releaseVersion">Checking releases…</strong><br><span id="releaseDate">Loading published versions and assets</span></div><a class="btn btn-secondary" href="https://github.com/sairajKhilariArch/Distributed_task_scheduler/releases" target="_blank" rel="noreferrer">All releases ↗</a></div>
+<div class="release-list" id="downloadGrid"><div class="release-group"><div class="release-empty">Loading release versions and direct download links…</div></div></div>
+<div class="download-note"><strong>Note:</strong> Only files uploaded to GitHub Releases will appear here. Platform labels are inferred from asset filenames, so verify each release's notes and compatibility before installing. No APK or binary is assumed to exist unless it is published.</div>
+</div></section>
+<section><div class="wrap"><div class="cta-panel reveal"><div><div class="kicker">EXPLORE THE CODE</div><h2>Build your understanding of distributed systems.</h2><p>Review the implementation, check project instructions, and follow new releases from the repository.</p></div><div class="actions" style="margin:0"><a class="btn btn-primary" href="https://github.com/sairajKhilariArch/Distributed_task_scheduler" target="_blank" rel="noreferrer">Open repository ↗</a><a class="btn btn-secondary" href="https://github.com/sairajKhilariArch/Distributed_task_scheduler/releases" target="_blank" rel="noreferrer">View releases</a></div></div></div></section>
+</main>
+<footer><div class="wrap footer-inner"><a class="brand" href="#top"><span class="brand-icon">DTS</span><span>DISTRIBUTED<em>-SCHEDULER</em></span></a><span>A project exploring distributed task scheduling.</span><div class="footer-links"><a href="https://github.com/sairajKhilariArch/Distributed_task_scheduler" target="_blank" rel="noreferrer">GitHub</a><a href="https://github.com/sairajKhilariArch/Distributed_task_scheduler/releases" target="_blank" rel="noreferrer">Releases</a><a href="#top">Back to top ↑</a></div></div></footer>
+<script>
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+(async function loadReleaseDownloads(){
+ const repo='sairajKhilariArch/Distributed_task_scheduler';
+ const releaseUrl=`https://api.github.com/repos/${repo}/releases?per_page=10`;
+ const pageUrl=`https://github.com/${repo}/releases`;
+ const grid=document.getElementById('downloadGrid'),version=document.getElementById('releaseVersion'),date=document.getElementById('releaseDate');
+ const escapeHtml=value=>String(value).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+ const classify=name=>{const n=name.toLowerCase();if(n.endsWith('.apk'))return 'Android APK';if(n.includes('windows')||n.endsWith('.exe')||n.includes('win64')||n.endsWith('.msi'))return 'Windows application';if(n.includes('linux')||n.includes('ubuntu')||n.endsWith('.appimage')||n.endsWith('.deb')||n.endsWith('.rpm'))return 'Linux application';if(n.includes('macos')||n.includes('darwin')||n.endsWith('.dmg')||n.endsWith('.pkg'))return 'macOS application';if(n.endsWith('.zip'))return 'ZIP archive';if(n.endsWith('.tar.gz')||n.endsWith('.tgz'))return 'TAR.GZ archive';return 'Release asset'};
+ const sizeLabel=bytes=>bytes<1048576?`${Math.max(1,Math.round(bytes/1024))} KB`:`${(bytes/1048576).toFixed(1)} MB`;
+ try{
+  const response=await fetch(releaseUrl,{headers:{'Accept':'application/vnd.github+json'}});
+  if(!response.ok)throw new Error('Could not fetch GitHub releases');
+  const releases=await response.json();
+  if(!Array.isArray(releases)||!releases.length){version.textContent='No published releases found';date.textContent='No version assets are currently available';grid.innerHTML='<div class="release-group"><div class="release-empty">No published GitHub releases were found. When a release is published with downloadable assets, they will appear here.</div></div>';return}
+  const latest=releases[0];version.textContent=`${latest.tag_name||latest.name||'Latest release'} · direct downloads`;date.textContent=latest.published_at?`Latest published ${new Date(latest.published_at).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'})}`:'Latest published release';
+  grid.innerHTML=releases.map((release,index)=>{
+   const assets=Array.isArray(release.assets)?release.assets:[];
+   const assetHtml=assets.length?assets.map(asset=>{const name=escapeHtml(asset.name),url=escapeHtml(asset.browser_download_url),kind=escapeHtml(classify(asset.name));return `<div class="asset-item"><div class="asset-name"><strong>${name}</strong><span>${kind} · ${sizeLabel(asset.size)}</span></div><a class="asset-download" href="${url}" download aria-label="Download ${name}">↓ Download</a></div>`}).join(''):'<div class="release-empty">No downloadable files are attached to this release. No direct application file is available for this version yet.</div>';
+   const title=escapeHtml(release.name||release.tag_name||'Release'),tag=escapeHtml(release.tag_name||''),when=release.published_at?new Date(release.published_at).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}):'Date unavailable';
+   return `<article class="release-group"><div class="release-group-head"><div><h3>${title}</h3><p>${tag} · ${escapeHtml(when)}${release.prerelease?' · Pre-release':''}</p></div>${index===0?'<span class="latest-pill">LATEST</span>':''}</div><div class="asset-list">${assetHtml}</div></article>`;
+  }).join('');
+ }catch(e){version.textContent='Browse published releases';date.textContent='Automatic listing unavailable';grid.innerHTML='<div class="release-group"><div class="release-empty">This browser could not load the release list. Use the releases link to view published versions and files.</div></div>'}
+})();
+</script>
+</body>
+</html>
