@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0b0b0e">
-<meta name="description" content="Distributed Task Scheduler — explore the project, workflow, source code, and published release downloads.">
+<meta name="description" content="A lightweight distributed task scheduler built in Rust with Tokio, Axum, and Reqwest. Explore the master, workers, client CLI, setup commands, and releases.">
 <title>Distributed Task Scheduler</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,73 +28,85 @@ section{padding:78px 0}.section-head{max-width:650px;margin-bottom:32px}.kicker{
 @media(max-width:850px){.hero-grid,.workflow{grid-template-columns:1fr;gap:38px}.hero{padding-top:65px}.features{grid-template-columns:repeat(2,1fr)}.cta-panel{align-items:flex-start;flex-direction:column}}
 @media(max-width:560px){.wrap{width:calc(100% - 28px)}.nav{height:65px}.navlinks{gap:10px;font-size:12px}.navlinks a:not(.navcta){display:none}.navcta{padding:9px 10px}.hero{padding:55px 0 48px}h1{font-size:48px}.hero p{font-size:15px}.termbody{padding:17px 12px;font-size:9px;min-height:280px}.features{grid-template-columns:1fr}.feature{min-height:0}section{padding:60px 0}.stats{margin-top:12px}.stat{padding:16px 5px}.stat strong{font-size:13px}.stat span{font-size:9px}.footer-inner{align-items:flex-start;flex-direction:column}.footer-links{flex-wrap:wrap}.actions .btn{flex:1}.asset-list{grid-template-columns:1fr}.release-group-head{padding:14px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+.architecture-preview{display:flex;flex-direction:column;justify-content:center;gap:10px;min-height:350px}.arch-node{border:1px solid #39353e;background:linear-gradient(120deg,#19171d,#111116);border-radius:9px;padding:12px 13px;display:flex;flex-direction:column;gap:5px;position:relative;overflow:hidden}.arch-node:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--red);opacity:.9}.arch-label{font:9px var(--mono);letter-spacing:.13em;color:#ff9299}.arch-node strong{font-size:12px;letter-spacing:-.02em}.arch-node small{font:9px/1.5 var(--mono);color:var(--muted)}.arch-master{border-color:#74404a;box-shadow:0 0 28px #ff454f0d}.arch-connector{display:flex;align-items:center;justify-content:center;gap:9px;color:var(--red);height:18px}.arch-connector span{font-size:18px;line-height:1;animation:connectorPulse 2s ease-in-out infinite}.arch-connector small{font:9px var(--mono);color:#88818d}@keyframes connectorPulse{50%{opacity:.35;transform:translateY(2px)}}.arch-workers{display:grid;grid-template-columns:1fr 1fr;gap:9px}.arch-worker{padding:10px}.arch-worker strong{font-size:11px}.codebox .codehead{gap:12px}.codebox .copy{flex-shrink:0}
+
 </style>
 </head>
 <body>
 <header class="nav"><div class="wrap nav-inner">
 <a class="brand" href="#top"><span class="brand-icon">DTS</span><span>DISTRIBUTED<em>-SCHEDULER</em></span></a>
-<nav class="navlinks" aria-label="Main navigation"><a href="#features">Features</a><a href="#workflow">Workflow</a><a href="#downloads">Downloads</a><a class="navcta" href="https://github.com/sairajKhilariArch/Distributed_task_scheduler" target="_blank" rel="noreferrer">View on GitHub ↗</a></nav>
+<nav class="navlinks" aria-label="Main navigation"><a href="#architecture">Architecture</a><a href="#workflow">Getting started</a><a href="#downloads">Downloads</a><a class="navcta" href="https://github.com/sairajKhilariArch/Distributed_task_scheduler" target="_blank" rel="noreferrer">View on GitHub ↗</a></nav>
 </div></header>
 <main id="top">
 <div class="wrap hero">
 <div class="hero-grid">
 <div class="reveal">
-<div class="eyebrow"><span class="pulse"></span> DISTRIBUTED SYSTEMS · TASK SCHEDULING</div>
-<h1>Schedule work.<br>Coordinate tasks.<br><span class="accent">Scale smarter.</span></h1>
-<p>A project focused on distributed task scheduling: organizing work, coordinating execution, and exploring how tasks can be managed across a system. Explore the source code and the project's current implementation.</p>
-<div class="actions"><a class="btn btn-primary" href="#downloads">↓ Download releases</a><a class="btn btn-secondary" href="https://github.com/sairajKhilariArch/Distributed_task_scheduler" target="_blank" rel="noreferrer">⌘ Explore source code</a></div>
-<div class="micro">DISTRIBUTED SYSTEMS&nbsp; / &nbsp;TASK EXECUTION&nbsp; / &nbsp;SCHEDULING</div>
+<div class="eyebrow"><span class="pulse"></span> RUST · TOKIO · AXUM · REQWEST</div>
+<h1>Distribute the work.<br>Coordinate the fleet.<br><span class="accent">Run tasks in Rust.</span></h1>
+<p>A lightweight distributed task scheduler built from scratch in Rust. A master coordinates the task queue and workers; workers register, send heartbeats, poll for tasks, execute asynchronously, and report results. A client CLI submits tasks and checks their status.</p>
+<div class="actions"><a class="btn btn-primary" href="#workflow">▶ Get started</a><a class="btn btn-secondary" href="https://github.com/sairajKhilariArch/Distributed_task_scheduler" target="_blank" rel="noreferrer">⌘ Explore source code</a></div>
+<div class="micro">RUST&nbsp; / &nbsp;TOKIO ASYNC RUNTIME&nbsp; / &nbsp;AXUM HTTP API&nbsp; / &nbsp;REQWEST CLIENT</div>
 </div>
-<div class="panel reveal" aria-label="Illustrative distributed task scheduler terminal preview">
-<div class="termbar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span class="termname">scheduler — task monitor</span></div>
-<div class="termbody">
-<div class="term-muted">┌───────────────────────────────────────┐</div>
-<div class="term-title">│ &nbsp; DISTRIBUTED TASK SCHEDULER &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │</div>
-<div class="term-muted">└───────────────────────────────────────┘</div><br>
-<div class="rowline"><span class="term-red">›</span><span>Scheduler status: <span class="term-green">ACTIVE</span></span></div>
-<div class="rowline"><span class="term-muted">01</span><span>task.compile <span class="tag">RUNNING</span></span></div>
-<div class="rowline"><span class="term-muted">02</span><span>task.process <span class="tag">QUEUED</span></span></div>
-<div class="rowline"><span class="term-muted">03</span><span>task.report <span class="term-green">COMPLETED</span></span></div>
-<div class="dividerline"></div>
-<div class="term-muted">WORKER OVERVIEW</div>
-<div class="rowline"><span class="term-green">●</span><span>worker-01 &nbsp; available</span></div>
-<div class="rowline"><span class="term-green">●</span><span>worker-02 &nbsp; available</span></div>
-<div class="dividerline"></div>
-<div class="term-muted">Illustrative UI preview — not live application output.</div>
+<div class="panel reveal" aria-label="Distributed task scheduler architecture diagram">
+<div class="termbar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span class="termname">system — architecture overview</span></div>
+<div class="termbody architecture-preview">
+<div class="arch-node arch-client"><span class="arch-label">CLIENT CLI</span><strong>Submit tasks · List status</strong><small>Task requests over HTTP</small></div>
+<div class="arch-connector"><span>↕</span><small>HTTP API</small></div>
+<div class="arch-node arch-master"><span class="arch-label">MASTER NODE</span><strong>Queue · Dispatch · Monitor</strong><small>Worker registration + heartbeats</small></div>
+<div class="arch-connector"><span>↕</span><small>Task polling + results</small></div>
+<div class="arch-workers"><div class="arch-node arch-worker"><span class="arch-label">WORKER 01</span><strong>Execute async</strong><small>Heartbeat · Report</small></div><div class="arch-node arch-worker"><span class="arch-label">WORKER 02</span><strong>Execute async</strong><small>Heartbeat · Report</small></div></div>
+<div class="dividerline"></div><div class="term-muted">CONCEPTUAL ARCHITECTURE · WORKERS SCALE OUT</div>
 </div></div>
 </div>
-<div class="stats reveal"><div class="stat"><strong>Task Scheduling</strong><span>Project focus</span></div><div class="stat"><strong>Distributed Work</strong><span>System concept</span></div><div class="stat"><strong>Source Available</strong><span>Explore on GitHub</span></div></div>
+<div class="stats reveal"><div class="stat"><strong>Rust</strong><span>Implementation</span></div><div class="stat"><strong>Tokio + Axum</strong><span>Async runtime + API</span></div><div class="stat"><strong>Reqwest</strong><span>HTTP client</span></div></div>
 </div>
-<section id="features"><div class="wrap">
-<div class="section-head reveal"><div class="kicker">01 / Features</div><h2>Make task execution easier to reason about.</h2><p>A clean project page for understanding the scheduler, exploring the implementation, and finding any published builds.</p></div>
+<section id="architecture"><div class="wrap">
+<div class="section-head reveal"><div class="kicker">01 / Architecture</div><h2>Three components. One task workflow.</h2><p>The master coordinates the system, workers perform asynchronous task execution, and the client CLI gives users a simple way to submit work and inspect statuses.</p></div>
 <div class="features">
-<article class="feature reveal"><div class="feature-icon">↗</div><h3>Task scheduling</h3><p>Organize work into tasks and explore how execution can be coordinated.</p></article>
-<article class="feature reveal"><div class="feature-icon">⌘</div><h3>Distributed execution</h3><p>Explore the project's approach to managing work across distributed components.</p></article>
-<article class="feature reveal"><div class="feature-icon">◷</div><h3>Task lifecycle</h3><p>Think through task states such as queued, running, completed, and failed as supported by the implementation.</p></article>
-<article class="feature reveal"><div class="feature-icon">▤</div><h3>Code-first project</h3><p>Inspect the repository source, dependencies, and documentation for exact capabilities.</p></article>
-<article class="feature reveal"><div class="feature-icon">⇩</div><h3>Direct release downloads</h3><p>Download buttons link directly to actual assets attached to published GitHub releases.</p></article>
-<article class="feature reveal"><div class="feature-icon">⚙</div><h3>Extend and experiment</h3><p>Use the code as a base for learning about task queues, workers, and distributed execution.</p></article>
+<article class="feature reveal"><div class="feature-icon">⌘</div><h3>Master node</h3><p>Coordinates the task queue and task distribution, handles worker registration, and monitors worker heartbeats.</p></article>
+<article class="feature reveal"><div class="feature-icon">⇄</div><h3>Worker nodes</h3><p>Register with the master, periodically send heartbeats, poll for pending tasks, execute tasks asynchronously, and report results.</p></article>
+<article class="feature reveal"><div class="feature-icon">&gt;_</div><h3>Client CLI</h3><p>Submit new tasks from the command line and list tasks to inspect their current statuses.</p></article>
+<article class="feature reveal"><div class="feature-icon">⚡</div><h3>Async execution</h3><p>Built with Tokio to support asynchronous work across the master and worker processes.</p></article>
+<article class="feature reveal"><div class="feature-icon">↔</div><h3>HTTP communication</h3><p>Axum provides the server-side HTTP API, while Reqwest is used for HTTP requests from clients and workers.</p></article>
+<article class="feature reveal"><div class="feature-icon">⇩</div><h3>GitHub releases</h3><p>Published release versions and their attached assets are loaded below directly from the repository's GitHub Releases API.</p></article>
 </div></div></section>
-<section id="workflow"><div class="wrap workflow">
-<div class="section-head reveal"><div class="kicker">02 / Workflow</div><h2>Start with the source.<br>Understand the system.</h2><p>Use the repository's own README for the exact runtime, dependencies, configuration, and startup commands.</p></div>
+<section id="workflow"><div class="wrap">
+<div class="section-head reveal"><div class="kicker">02 / Getting started</div><h2>Build it. Start the master. Add workers.</h2><p>Run each service in its own terminal. Start the master first, then launch one or more workers that point to the master's URL. Use the client CLI to submit tasks and list their statuses.</p></div>
 <div class="steps">
-<div class="step reveal"><div class="stepnum">01</div><div><h3>Clone the repository</h3><p>Download the project source from GitHub.</p></div></div>
-<div class="step reveal"><div class="stepnum">02</div><div><h3>Read the setup guide</h3><p>Inspect the README, project manifest, and configuration examples before running it.</p></div></div>
-<div class="step reveal"><div class="stepnum">03</div><div><h3>Configure the services</h3><p>Set up any dependencies or worker components required by the current implementation.</p></div></div>
-<div class="step reveal"><div class="stepnum">04</div><div><h3>Run and test tasks</h3><p>Follow the repository's documented commands and verify task execution in your environment.</p></div></div>
-</div></div></section>
+<div class="step reveal"><div class="stepnum">01</div><div><h3>Build the project</h3><p>Compile the project in release mode before running the services.</p></div></div>
+<div class="step reveal"><div class="stepnum">02</div><div><h3>Run the master node</h3><p>Start the master on port 8080. Keep this process running while workers connect.</p></div></div>
+<div class="step reveal"><div class="stepnum">03</div><div><h3>Run worker node(s)</h3><p>Open separate terminals for workers. Give each worker a unique ID and the master's address.</p></div></div>
+<div class="step reveal"><div class="stepnum">04</div><div><h3>Submit and inspect tasks</h3><p>Use the client CLI to submit a sample Fibonacci task or list all tasks and their statuses.</p></div></div>
+</div>
+<div class="codebox reveal" style="margin-top:28px"><div class="codehead"><span>TERMINAL 01 · BUILD + MASTER</span><button class="copy" type="button" data-copy="cargo build --release&#10;cargo run --bin master -- --port 8080">Copy commands</button></div><pre><span class="code-comment"># Build the project</span>
+cargo build --release
+
+<span class="code-comment"># Run the master node</span>
+cargo run --bin master -- --port 8080</pre></div>
+<div class="codebox reveal" style="margin-top:14px"><div class="codehead"><span>TERMINALS 02+ · WORKERS</span><button class="copy" type="button" data-copy="cargo run --bin worker -- --worker-id worker-1 --master http://127.0.0.1:8080&#10;cargo run --bin worker -- --worker-id worker-2 --master http://127.0.0.1:8080">Copy commands</button></div><pre><span class="code-comment"># Run each worker in a separate terminal</span>
+cargo run --bin worker -- --worker-id worker-1 --master http://127.0.0.1:8080
+
+cargo run --bin worker -- --worker-id worker-2 --master http://127.0.0.1:8080</pre></div>
+<div class="codebox reveal" style="margin-top:14px"><div class="codehead"><span>CLIENT CLI · SUBMIT + LIST</span><button class="copy" type="button" data-copy='cargo run --bin client -- submit "Compute Fibonacci of 40"&#10;cargo run --bin client -- list'>Copy commands</button></div><pre><span class="code-comment"># Submit a task</span>
+cargo run --bin client -- submit "Compute Fibonacci of 40"
+
+<span class="code-comment"># List all tasks and their statuses</span>
+cargo run --bin client -- list</pre></div>
+</div></section>
 <section id="downloads"><div class="wrap">
-<div class="section-head reveal"><div class="kicker">03 / Downloads</div><h2>Choose a release version.</h2><p>Select a published release asset to download the file directly. Versions and assets are loaded from this repository's GitHub releases.</p></div>
+<div class="section-head reveal"><div class="kicker">03 / GitHub releases</div><h2>Choose a release version.</h2><p>Select a published release asset to download the file directly. Versions and assets are loaded from this repository's GitHub releases.</p></div>
 <div class="download-toolbar reveal"><div class="release-meta"><strong id="releaseVersion">Checking releases…</strong><br><span id="releaseDate">Loading published versions and assets</span></div><a class="btn btn-secondary" href="https://github.com/sairajKhilariArch/Distributed_task_scheduler/releases" target="_blank" rel="noreferrer">All releases ↗</a></div>
 <div class="release-list" id="downloadGrid"><div class="release-group"><div class="release-empty">Loading release versions and direct download links…</div></div></div>
 <div class="download-note"><strong>Note:</strong> Only files uploaded to GitHub Releases will appear here. Platform labels are inferred from asset filenames, so verify each release's notes and compatibility before installing. No APK or binary is assumed to exist unless it is published.</div>
 </div></section>
 <section><div class="wrap"><div class="cta-panel reveal"><div><div class="kicker">EXPLORE THE CODE</div><h2>Build your understanding of distributed systems.</h2><p>Review the implementation, check project instructions, and follow new releases from the repository.</p></div><div class="actions" style="margin:0"><a class="btn btn-primary" href="https://github.com/sairajKhilariArch/Distributed_task_scheduler" target="_blank" rel="noreferrer">Open repository ↗</a><a class="btn btn-secondary" href="https://github.com/sairajKhilariArch/Distributed_task_scheduler/releases" target="_blank" rel="noreferrer">View releases</a></div></div></div></section>
 </main>
-<footer><div class="wrap footer-inner"><a class="brand" href="#top"><span class="brand-icon">DTS</span><span>DISTRIBUTED<em>-SCHEDULER</em></span></a><span>A project exploring distributed task scheduling.</span><div class="footer-links"><a href="https://github.com/sairajKhilariArch/Distributed_task_scheduler" target="_blank" rel="noreferrer">GitHub</a><a href="https://github.com/sairajKhilariArch/Distributed_task_scheduler/releases" target="_blank" rel="noreferrer">Releases</a><a href="#top">Back to top ↑</a></div></div></footer>
+<footer><div class="wrap footer-inner"><a class="brand" href="#top"><span class="brand-icon">DTS</span><span>DISTRIBUTED<em>-SCHEDULER</em></span></a><span>Rust · Tokio · Axum · Reqwest</span><div class="footer-links"><a href="https://github.com/sairajKhilariArch/Distributed_task_scheduler" target="_blank" rel="noreferrer">GitHub</a><a href="https://github.com/sairajKhilariArch/Distributed_task_scheduler/releases" target="_blank" rel="noreferrer">Releases</a><a href="#top">Back to top ↑</a></div></div></footer>
 <script>
 const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}})},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+document.querySelectorAll('[data-copy]').forEach(button=>button.addEventListener('click',async()=>{const original=button.textContent;const text=button.getAttribute('data-copy').replace(/&#10;/g,'\n');try{await navigator.clipboard.writeText(text);button.textContent='Copied!';}catch(error){button.textContent='Select commands to copy';}setTimeout(()=>button.textContent=original,1600)}));
 (async function loadReleaseDownloads(){
  const repo='sairajKhilariArch/Distributed_task_scheduler';
  const releaseUrl=`https://api.github.com/repos/${repo}/releases?per_page=10`;
