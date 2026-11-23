@@ -1,12 +1,20 @@
 # Distributed Task Scheduler in Rust
 
-A robust, lightweight distributed task scheduler built from scratch in Rust using `tokio`, `axum`, and `reqwest`.
+A lightweight distributed task scheduler built from scratch in Rust using `tokio`, `axum`, and `reqwest`.
 
 ## Architecture
 
 - **Master Node**: Coordinates task queuing, task distribution, worker registration, and heartbeat monitoring.
 - **Worker Node**: Registers with the master, periodically sends heartbeats, polls for pending tasks, executes them asynchronously, and reports results.
 - **Client CLI**: Allows users to submit new tasks and inspect task statuses.
+
+## Project Team — Group 4
+
+| Name | Roll Number |
+|---|---|
+| Sandip Bhuriya | 26PG110058 |
+| Sairaj Khilari | 26PG110059 |
+| Bhavdeep Gohil | 26PG110065 |
 
 ## Getting Started
 
